@@ -3,8 +3,12 @@ c# algorithms
 
 Put your C# algorithms here!
 
-Credits
+Format
 
-(sign name here)
+public void/type name(object/type args)
 
-Techcraft7,
+{
+
+  //code here
+
+}
