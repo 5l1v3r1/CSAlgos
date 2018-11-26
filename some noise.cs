@@ -1,4 +1,4 @@
-public static decimal[] SmoothNoise2D(int width, int max, int frequency)
+public static decimal[] SmoothNoise2D(int width, int max, int frequency) //IS BROKEN
 {
 	/*
 	how it works
