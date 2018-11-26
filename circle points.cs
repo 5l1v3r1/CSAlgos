@@ -1,15 +1,13 @@
-public static Point[] CirclePoints(double radius, double centerx, double centery)
+public Point[] CirclePoints(int radius, Point CircleCenter)
 {
-	radius = radius <= 0 ? 1 : radius;
-	Point[] output = new Point[359];
-	for (int i = 0; i < 359; i++)
+	Point[] output = new Point[360];
+	for (int a = 0; a < 360; a++)
 	{
-		output[i] = new Point(Convert.ToInt32((Math.Cos(DegToRad(i))*r) + centerx), Convert.ToInt32((Math.Sin(DegToRad(i)) * r) + centery));
+		output[a] = new Point((int)Math.Round(Math.Cos(DegreeToRadian(a)) * radius) + CircleCenter.X, (int)Math.Round(Math.Sin(DegreeToRadian(a)) * radius) + CircleCenter.Y);
 	}
 	return output;
 }
-public static double DegToRad (double degrees)
+private double DegreeToRadian(double angle)
 {
-    double radians = (Math.PI / 180) * degrees;
-    return (radians);
+   return Math.PI * angle / 180.0;
 }
