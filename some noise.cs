@@ -75,19 +75,23 @@ public static decimal[] SmoothNoise2D(int width, int max, int frequency) //IS BR
 	int z = 0; //index of numbers
 	for(int w = 0; w <= output.Length; w += freq)
 	{
-		for (int i = 0; i < output[z];i = (90/freq) * z)
+		//bottom
+		for (int i = 0; i < output[z];i += 0)
 		{
 			output[z] += (decimal)Math.Sin(i);
 			z++;
+			i = (90/freq/2) * z;
 		}
 		//top
 		z = w + freq; //reuse variables! :)
-		for (int i = 0; i > output[z];i = (90/freq) * z)
+		for (int i = 0; i > output[z];i += 0)
 		{
 			output[z] = (decimal)Math.Sin(i);
 			z--;
+			i = (90/freq/2) * z;
 		}
 		z = w;
+		w = w + freq
 	}
 	return output;
 }
