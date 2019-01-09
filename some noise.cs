@@ -30,41 +30,6 @@ public static decimal[] SmoothNoise2D(int width, int max, int frequency) //IS BR
 		}
 	}
 	x = 0;
-	//lerp
-	/*
-	y =+ distance between points / freq
-	*/
-	while (x <= output.Length - 1 && freq != 1)
-	{
-		decimal p1 = output[x];
-		decimal p2 = output[x + freq];
-		if (p1 > p2)
-		{
-			decimal dis = (decimal)Math.Abs(p1-p2);
-			decimal ad = dis/freq;
-			for (int i = 0; i < (dis + freq); i++)
-			{
-				output[x + i] = p1 + (ad * i); //if i = 0, then it stays the same because it can be simplified as output[x + 0] = p1 + 0;  and X should be p1 in the first iteration, and it will end at output[output.IndexOf(p2) - 1]; so it never reaches p2
-			}
-		}
-		else if (p1 < p2)
-		{
-			decimal dis = (decimal)Math.Abs(p1-p2);
-			decimal ad = dis/freq;
-			for (int i = 0; i < (dis + freq); i++)
-			{
-				output[x + i] = p1 - (ad * i); //if i = 0, then it stays the same because it can be simplified as output[x + 0] = p1 + 0;  and X should be p1 in the first iteration, and it will end at output[output.IndexOf(p2) - 1]; so it never reaches p2
-			}
-		}
-		else if (p1 == p2)
-		{
-			for (int i = x; i != freq; i++)
-			{
-				output[x + i] = p1;
-			}
-		}
-		x += freq;
-	}
 	//smooth
 	/*
 	sine waves
@@ -73,25 +38,21 @@ public static decimal[] SmoothNoise2D(int width, int max, int frequency) //IS BR
 	repeat at top
 	*/
 	int z = 0; //index of numbers
-	for(int w = 0; w <= output.Length; w += freq)
+	for (int index = 0; index < freq; index += 0)
 	{
-		//bottom
-		for (int i = 0; i < output[z];i += 0)
+		decimal p1 = output[index];
+		decimal p2 = output[index + freq];
+		decimal dis = p2-p1;
+		if (true)
 		{
-			output[z] += (decimal)Math.Sin(i);
-			z++;
-			i = (90/freq/2) * z;
+			int angle = 90/freq;
+			for (int i = index + 1; i < index + freq; i++)
+			{
+				output[i] = p1 + (Math.Sin(angle) * dis);
+				angle += 90/freq;
+			}
 		}
-		//top
-		z = w + freq; //reuse variables! :)
-		for (int i = 0; i > output[z];i += 0)
-		{
-			output[z] = (decimal)Math.Sin(i);
-			z--;
-			i = (90/freq/2) * z;
-		}
-		z = w;
-		w = w + freq
+		index += freq;
 	}
 	return output;
 }
